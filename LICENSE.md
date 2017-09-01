@@ -27,14 +27,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 This licence does not apply to the following components:
 
- - GenericParsing located at /src/IOCMaker/GenericParsing.dll and releases/Athena_Release_*.zip/GenericParsing.dll
+ - GenericParsing located at /src/IOCMaker/GenericParsing.dll and releases/Athena_Release_\*.zip/GenericParsing.dll
    License and software available at: https://github.com/AndrewRissing/GenericParsing
    
- - Microsoft Automatic Graph Layout located at /src/IOCMaker and releases/Athena_Release_*.zip/Microsoft.Msagl*.dll
+ - Microsoft Automatic Graph Layout located at /src/IOCMaker and releases/Athena_Release_\*.zip/Microsoft.Msagl\*.dll
    It is released under the MIT License
    License and software available at: https://github.com/Microsoft/automatic-graph-layout
    
- - Json.NET located at /src/IOCMaker/ and /src/IOCMaker and releases/Athena_Release_*.zip/Newtonsoft.Json.dll
+ - Json.NET located at /src/IOCMaker/ and releases/Athena_Release_\*.zip/Newtonsoft.Json.dll
    It is released under the MIT License
    License and software available at: https://www.newtonsoft.com/json and https://github.com/JamesNK/Newtonsoft.Json
    
