@@ -28,20 +28,19 @@ Choose File -> Open to open a previously saved Athena file.
 
 **Note** – Athena only opens and edits the propriety format to which it saves. It does NOT currently open or edit any of the file types it can export, these are export only.
 
-
-![Image of Starting Window](images/1.png "Starting Window")
+<img src="images/1.png" width="600">
 
 #### Incident Details
 
 Once a new incident has been opened or created, the first step is to check and edit the incident details section of the window:
 
-![Image of Incident Details Window](images/2.png "Incident Details")
+<img src="images/2.png" width="600">
 
 The field names should be self-explanatory, but are open to your interpretation as to their best values for your use case.
 
 **Note** – Some of the fields in the “Incident Overview” section are used to generate the “ID” values of any observables added to this collection. Therefore it is important that all Incident details are completed at this stage **BEFORE** adding any observables - to ensure ID names are consistent in your collection. The program will try to warn you if you miss any values.
 
-![Image of Incident Details Window](images/3.png "Incident Details")
+<img src="images/3.png" width="600">
 
 Once you have completed the incident details section, click the “Plus” icon to begin adding observables.
 
@@ -57,14 +56,14 @@ Currently the supported types are:
 * Malware Sample
 * Registry
 
-![Image of Observable Types Window](images/4.png "Observable Types")
+<img src="images/4.png" width="600">
 
 The interface will change dependant on the type of observable you select, displaying on the fields relevant to that observable type.
 
 Fill in the details for your selected observable type.
 
 
-![Image of Observable Details Window](images/5.png "Observable Details")
+<img src="images/5.png" width="600">
 
 Once done, select “Save” to create the observable and return to the main screen or “Save and New” to save this observable and immediately begin creating a new one.
 
@@ -73,20 +72,20 @@ To use this, select the “Malware Sample” observable type, and then click the
 Select your malware file, and wait while the hashes are generated.
 Complete any missing details and save your observable.
 
-![Image of Hash Generation Functionality](images/6.png "Generating Hashes")
+<img src="images/6.png" width="600">
 
 #### Creating Relationships Between Observables
 
 Athena allows observables to be linked together to give context to individual observables. The relationships follow the STIX vocabulary. This may be updated in future versions to allow user-created and more flexible relationships.
 To begin linking observables together, click the “Link” Icon on the main window: 
 
-![Image of Relationships Link Button](images/7.png "Link Icon")
+<img src="images/7.png" width="600">
 
 This displays the “Add a Relationship” window.
 
 **Note** – It doesn’t matter which Observable is selected in the main window when you click the “Link” icon, you can add relationships between any observables you like from this window.
 
-![Image of Link Icon](images/8.png "Link Icon")
+<img src="images/8.png" width="600">
 
 To add a relationship between two or more observables, select one or multiple observables from the left hand box (Hold Control or Shift keys to select multiple observables).
 
@@ -111,11 +110,11 @@ Athena provides a functionality to visualise the relationships you have created 
 Access the visualisation window by clicking the “Relationships” icon on the main window:
 
 
-![Image of Visualisation Icon](images/9.png "Visualisation Icon")
+<img src="images/9.png" width="600">
 
 The “Visualise Data” window opens, showing the observables and their relationships.
 
-![Image of Visualisation Window](images/10.png "Visualisation Window")
+<img src="images/10.png" width="600">
 
 Items can be dragged to rearrange the diagram to more easily see your relationships.
 
@@ -129,11 +128,11 @@ Athena can import observables in bulk from a CSV file. This is useful for bulk l
 
 To mass import from a CSV, choose the CSV import icon on the main window:
 
-![Image of CSV Button](images/11.png "CSV Button")
+<img src="images/11.png" width="600">
 
 This opens the CSV Import window.
 
-![Image of CSV Import Window](images/12.png "CSV Import Window")
+<img src="images/12.png" width="600">
 
 The blue hyperlink opens the template.csv file allowing the user to populate the IOCs they wish to load.
 
@@ -141,11 +140,11 @@ The blue hyperlink opens the template.csv file allowing the user to populate the
 
 The template CSV file is structured as per the screenshot below:
 
-![Image of CSV Template](images/13.png "CSV Template")
+<img src="images/13.png" width="600">
 
 Complete the template as per the example below:
 
-![Image of CSV Template](images/14.png "CSV Template")
+<img src="images/14.png" width="600">
 
 **Note** – The columns displayed across the top of the CSV are all the possible fields for all possible IOC types. The IOC types are displayed down the left hand side in column A. Not all columns apply to all IOC types. Any data supplied in a column which does not apply to that IOC type will be ignored on import. For example, if you supply a value in the “Hashes.MD5” column for an “IP Address” that hash will be ignored.
 
@@ -155,13 +154,13 @@ The loaded observables are displayed in the right hand box. Clicking “Save/Clo
 
 Any errors with you CSV will be shown in the box on the left.
 
-![Image of CSV Import Window](images/15.png "CSV Import Window")
+<img src="images/15.png" width="600">
 
 #### Building Relationships and visualising again
 
 Now there are more observables added to our collection, we can build the relationships between them as we did before, and visualise them:
 
-![Image of Visualise](images/16.png "Visualise")
+<img src="images/16.png" width="600">
 
 #### Exporting Data
 
@@ -169,13 +168,13 @@ Choose File -> Save to save your collection locally to guard against program cra
 
 When you wish to export to STIX or MISP formats, choose File -> Export and then select your desired format.
 
-![Image of Save](images/17.png "Save")
+<img src="images/17.png" width="600">
 
 You will be prompted to select the location to save the file, and the export will begin.
 
 Depending on the size of the collection of observables, this may take a few seconds.
 
-![Image of Export](images/18.png "Export")
+<img src="images/18.png" width="600">
 
 
 
