@@ -3,6 +3,8 @@ Athena
 
 Athena is a graphical tool to create and output Threat Intelligence information in various file formats. Currently, TI information can be exported as STIX 1.1 XML files or MISP JSON files.
 
+The latest release is: <a href="releases/Athena_Release_V0.5.zip">Athena_Release_V0.5.zip</a> (Windows 32-bit, .NET 4.5)
+
 Athena has been designed to allow the quick and efficient creation of IOC files post-investigation by IR teams – and to allow those files to be created in various formats. This enables the sharing of intelligence between the IR team and other threat-hunting teams in whatever format is best suited for manual review or ingestion into automated systems.
 
 The Athena program takes manual input of “Incident” details, and then either manual or CSV input of “Observables”, which are the individual IOCs themselves. This collection of incident information and Observables can be saved to a proprietary format (for later editing) and/or exported to a supported format (currently STIX 1.1 XML files or MISP JSON files).
