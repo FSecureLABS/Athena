@@ -40,7 +40,7 @@ namespace Athena
         //Show the about information when the user clicks help -> about
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Version 0.5\r\nLast Updated: 31 Aug 2017", "About Athena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Version 0.6\r\nLast Updated: 10 Oct 2017", "About Athena", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //A Panel used to hide the controls on the form when there isnt a collection open
@@ -54,6 +54,7 @@ namespace Athena
             //Do the initial form setup
             InitializeComponent();
             UnsavedChanges = false;
+            LoadExportPlugins();
 
             //This pannel is used to hide the UI from the user until they choose File-> "Open" or "New"
             //Here we set it to cover the entire form and add it to the window. It is removed/added in the "LockForm()" method.
@@ -112,6 +113,86 @@ namespace Athena
 
 
         }
+
+
+
+        ICollection<AthenaPluginInterfaces.AthenaExportPlugin> ExportPlugins;
+        private void LoadExportPlugins()
+        {
+            ExportPlugins = new List<AthenaPluginInterfaces.AthenaExportPlugin>();
+            Type pluginType = typeof(AthenaPluginInterfaces.AthenaExportPlugin);
+            ICollection<Type> pluginTypes = new List<Type>();
+
+            //Built In
+            pluginTypes.Add(typeof(Stix1ExportPlugin.Stix1ExportPlugin));
+            pluginTypes.Add(typeof(MISPJsonExportPlugin.MISPJsonExportPlugin));
+            pluginTypes.Add(typeof(SnortRulesExportPlugin.SnortRulesExportPlugin));
+            pluginTypes.Add(typeof(YaraRulesExportPlugin.YaraRulesExportPlugin));
+
+            //Dynamic
+            // Here we will load external DLL files which impliment the plugin interface
+            // For now, we are omitting this while we determine the best way to securely allow external assembly files
+            // without allowing any DLL to be executed with arbitrary code under the privilage of this application
+
+            //Add the plugins to the menu and add event handlers
+            foreach (Type type in pluginTypes)
+            {
+                AthenaPluginInterfaces.AthenaExportPlugin plugin = (AthenaPluginInterfaces.AthenaExportPlugin) Activator.CreateInstance(type);
+                ExportPlugins.Add(plugin);
+                exportToolStripMenuItem.DropDownItems.Add(plugin.DisplayName,null,exportplugin_MenuClick_EventHandler);
+            }
+
+          
+        }
+
+        private void exportplugin_MenuClick_EventHandler(object sender, EventArgs e)
+        {
+            string PluginName = "";
+            AthenaPluginInterfaces.AthenaExportPlugin Plugin;
+            try
+            {
+                PluginName = ((ToolStripMenuItem)sender).Text;
+                Plugin = ExportPlugins.First(x => x.DisplayName == PluginName);
+            }
+            catch
+            {
+                MessageBox.Show("Error loading export plugin \""+PluginName+"\"");
+                return;
+            }
+            
+            SaveFileDialog diag = new SaveFileDialog();
+            diag.Filter = Plugin.PluginSelected();
+            if (diag.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Plugin.OutputFileSelected(diag.FileName, ObsCollection);
+                    Plugin.DoPreSaveOptions();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unhandled error in pre-save options in plugin: \"" + PluginName + "\"");
+                    return;
+                }
+
+                try
+                {
+                    //    //Do the export in a different thread to keep the GUI free to display the "loading" animation and any errors
+                    Thread exportthread = new Thread(() =>Plugin.DoSave());
+                    exportthread.Start();
+
+                    //Create aother thread to keep track of the export
+                    Thread monitorexportthread = new Thread(() => MonitorExportThread(exportthread,Plugin));
+                    monitorexportthread.Start();
+                }
+                catch
+                {
+                    MessageBox.Show("Unhandled error while saving file using plugin: \"" + PluginName + "\"");
+                    return;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Fires when the timer completes - ie. the user has finished typing
@@ -455,40 +536,12 @@ namespace Athena
                 else UnsavedChanges = false;
             }
         }
-
-        /// <summary>
-        /// Handle the user choosing File->Export->Stix 1.1.1
-        /// </summary>
-        private void sTIXToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog diag = new SaveFileDialog();
-            diag.Filter = "Stix XML|*.xml";
-            if (diag.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    //Do the export in a different thread to keep the GUI free to display the "loading" animation and any errors
-                    Thread exportthread = new Thread(() => ObsCollection.ToSTIX_1_1_1_XML(diag.FileName));
-                    exportthread.Start();
-
-                    //Create aother thread to keep track of the export
-                    Thread monitorexportthread = new Thread(() => MonitorExportThread(exportthread));
-                    monitorexportthread.Start();
-                }
-                catch (Exception exep)
-                {
-                    MessageBox.Show("Error saving file");
-                }
-            }
-        }
-
-
-
+        
         /// <summary>
         /// Locks the form and Waits until the export thread is done, then unlocks the form
         /// </summary>
         /// <param name="t">The thread to wait for</param>
-        private void MonitorExportThread(Thread t)
+        private void MonitorExportThread(Thread t,AthenaPluginInterfaces.AthenaExportPlugin Plugin = null)
         {
             //Make sure the thread hasn't already finished
             if (t.IsAlive)
@@ -499,22 +552,17 @@ namespace Athena
                 //Wait for the thread to finish
                 while (t.IsAlive) Thread.Sleep(1000); ///Wait one second before checking again
 
+                //If we were passed a plugin object, then check for errors
+                if(Plugin!=null)
+                {
+                    if (!Plugin.ExportSuccessful())
+                    {
+                        MessageBox.Show("Error saving the file. The export plugin reported the following:\r\n"+String.Join("\r\n- ", Plugin.ReportErrors()));
+                    }
+                }
+
                 //Unlock the form
                 IndicatorDetailsPanel.BeginInvoke((Action)delegate { LockForm(false); });
-            }
-        }
-
-
-        private void jSONToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog diag = new SaveFileDialog();
-            diag.Filter = "JSON|*.json";
-            if (diag.ShowDialog() == DialogResult.OK)
-            {
-                Thread exportthread = new Thread(() => ObsCollection.ToMISP_JSON(diag.FileName));
-                exportthread.Start();
-                Thread monitorexportthread = new Thread(() => MonitorExportThread(exportthread));
-                monitorexportthread.Start();
             }
         }
 
@@ -1000,6 +1048,7 @@ namespace Athena
             }
         }
         #endregion
-        
+
+       
     }
 }
