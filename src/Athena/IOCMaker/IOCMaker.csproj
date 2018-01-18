@@ -68,6 +68,7 @@
     <Compile Include="AddIndicatorForm.Designer.cs">
       <DependentUpon>AddIndicatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AthenaPlugins.cs" />
     <Compile Include="ImportCSV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,7 +81,10 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MISP.cs" />
+    <Compile Include="Plugins\MISPJsonExportPlugin.cs" />
+    <Compile Include="Plugins\SnortRulesExportPlugin.cs" />
+    <Compile Include="Plugins\Stix1ExportPlugin.cs" />
+    <Compile Include="Plugins\YaraRulesExportPlugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelationshipAddForm.cs">

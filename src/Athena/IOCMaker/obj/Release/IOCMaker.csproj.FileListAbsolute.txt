@@ -36,3 +36,25 @@ C:\Users\steve\Documents\Visual Studio 2013\Projects\Athena\IOCMaker\obj\Release
 C:\Users\steve\Documents\Visual Studio 2013\Projects\Athena\IOCMaker\obj\Release\IOCMaker.csproj.GenerateResource.Cache
 C:\Users\steve\Documents\Visual Studio 2013\Projects\Athena\IOCMaker\obj\Release\Athena.exe
 C:\Users\steve\Documents\Visual Studio 2013\Projects\Athena\IOCMaker\obj\Release\Athena.pdb
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Athena.exe.config
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Athena.exe
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Athena.pdb
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\GenericParsing.dll
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.dll
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.Drawing.dll
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Newtonsoft.Json.dll
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.xml
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.Drawing.xml
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\bin\Release\Newtonsoft.Json.xml
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\IOCMaker.csprojResolveAssemblyReference.cache
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.AddIndicatorForm.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.ImportCSV.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.MainWindow.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.Properties.Resources.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.RelationshipAddForm.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.VisualiseDataForm.resources
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\IOCMaker.csproj.GenerateResource.Cache
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.exe
+C:\Users\steve\Source\Repos\Athena\src\Athena\IOCMaker\obj\Release\Athena.pdb
